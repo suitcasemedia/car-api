@@ -11,11 +11,38 @@ export default function VehicleList() {
   }
 
   if (error) {
-    return <div data-testid="error">{ error }</div>;
+    return <div data-testid="error">{error}</div>;
   }
-
+  console.log(vehicles);
   return (
     <div data-testid="results">
+      <ul className="VehicleList">
+        {vehicles.map((vehicle) => (
+          <li className="vehicle">
+            <picture className="vehicle__image">
+
+              <source
+                srcset={vehicle.media[0].url}
+                media="(min-width: 600px)"
+              />
+              <img
+                src={vehicle.media[1].url}
+                alt={vehicle.id}
+              />
+            </picture>
+            <div className="vehicle__info">
+              <h2 className="vehicle__name">{vehicle.id}</h2>
+              <h4 className="vehicle__price">
+                From &nbsp;
+                {vehicle.price}
+              </h4>
+              <h5 className="vehicle__caption">The pinnacle of refined capability</h5>
+
+            </div>
+
+          </li>
+        ))}
+      </ul>
       <p>List of vehicles will be displayed here</p>
       <p>
         Visit
